@@ -46,7 +46,7 @@ const configLuno = {
   // How many components maximum to mutate at once
   mutateElements: 6,
   // How many parallel queries to run at once while using pc
-  parallelqueries: 1,
+  parallelqueries: 8,
   // How many parallel queries to run at once while not using pc
   // parallelqueries: 4,
   // parallelqueries: 8,
