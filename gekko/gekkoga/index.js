@@ -91,7 +91,7 @@ class Ga {
       console.log('is there a strategy REF!!!!!!!!!!!!!!!!!!!!!!!!!!================1=');
     } else {
       console.log('is there a strategy REF!!!!!!!!!!!!!!!!!!!!!!!!!!================2=');
-      filename2 = `./results/realtime/gekkoga/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`;
+      filename2 = `./results/realtime/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`;
     }
     const fileName = filename2;
     const exists = fs.existsSync(fileName);
@@ -111,7 +111,7 @@ class Ga {
       console.log('is there a strategy REF!!!!!!!!!!!!!!!!!!!!!!!!!!================1=');
     } else {
       console.log('is there a strategy REF!!!!!!!!!!!!!!!!!!!!!!!!!!================2=');
-      filename2 = `./results/realtime/gekkoga/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}POP.json`;
+      filename2 = `./results/realtime/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}POP.json`;
     }
     const fileName = filename2;
     const exists = fs.existsSync(fileName);
@@ -429,7 +429,7 @@ class Ga {
 
   async updateFromTheStrategyToHere() { //from there to here
     const json = JSON.stringify(this.allTimeMaximum);
-    await fs.writeFile(`./results/realtime/gekkoga/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`, json, 'utf8').catch(err => console.log(err));
+    await fs.writeFile(`./results/realtime/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`, json, 'utf8').catch(err => console.log(err));
   }
   async run() {
     // Check for old break point
@@ -597,17 +597,17 @@ class Ga {
 
           const json2 = JSON.stringify(container);
 
-          if (fs.existsSync(`./results/realtime/gekkoga/nearFit/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`)) {
+          if (fs.existsSync(`./results/realtime/nearFit/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`)) {
             let content;
-            content = fs.readFileSync(`./results/realtime/gekkoga/nearFit/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`, { encoding: 'utf8' });
+            content = fs.readFileSync(`./results/realtime/nearFit/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`, { encoding: 'utf8' });
             // console.log(content);
 
             if (!String(content).includes(json2)) {
-              fs.appendFile(`./results/realtime/gekkoga/nearFit/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`, json2 + '\n', 'utf8').catch(err => console.log(err));
+              fs.appendFile(`./results/realtime/nearFit/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`, json2 + '\n', 'utf8').catch(err => console.log(err));
             }
 
           } else {
-            fs.writeFile(`./results/realtime/gekkoga/nearFit/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`, json2 + '\n', 'utf8').catch(err => console.log(err));
+            fs.writeFile(`./results/realtime/nearFit/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`, json2 + '\n', 'utf8').catch(err => console.log(err));
           }
 
         }
@@ -649,8 +649,8 @@ class Ga {
 
 
         // console.log(this.realtimeStrategy);
-        await fs.writeFile(`./results/realtime/gekkoga/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`, json, 'utf8').catch(err => console.log(err));
-        await fs.writeFile(`./results/realtime/gekkoga/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}Pop.json`, jsonPop, 'utf8').catch(err => console.log(err));
+        await fs.writeFile(`./results/realtime/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`, json, 'utf8').catch(err => console.log(err));
+        await fs.writeFile(`./results/realtime/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}Pop.json`, jsonPop, 'utf8').catch(err => console.log(err));
       }
       if (this.sendemail && this.notifynewhigh) {
         var transporter = nodemailer.createTransport({
