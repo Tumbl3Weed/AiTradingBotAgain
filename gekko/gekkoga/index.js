@@ -91,7 +91,7 @@ class Ga {
       console.log('is there a strategy REF!!!!!!!!!!!!!!!!!!!!!!!!!!================1=');
     } else {
       console.log('is there a strategy REF!!!!!!!!!!!!!!!!!!!!!!!!!!================2=');
-      filename2 = `C:/Users/Calvi/gekko/gekkoga/results/realtime/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`;
+      filename2 = `./results/realtime/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`;
     }
     const fileName = filename2;
     const exists = fs.existsSync(fileName);
@@ -111,7 +111,7 @@ class Ga {
       console.log('is there a strategy REF!!!!!!!!!!!!!!!!!!!!!!!!!!================1=');
     } else {
       console.log('is there a strategy REF!!!!!!!!!!!!!!!!!!!!!!!!!!================2=');
-      filename2 = `C:/Users/Calvi/gekko/gekkoga/results/realtime/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}POP.json`;
+      filename2 = `./results/realtime/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}POP.json`;
     }
     const fileName = filename2;
     const exists = fs.existsSync(fileName);
@@ -310,7 +310,7 @@ class Ga {
       // var startDate = moment(new Date("2021-01-01 00:00")).subtract(randomExt.integer(720, -720), 'minutes').format('YYYY-MM-DD HH:mm');   // current date's milliseconds - 1,000 ms * 60 s * 60 mins * 24 hrs * 1(1# of days beyond one to go back)
       // console.log(moment(date).subtract(121, 'minutes').format('YYYY-MM-DD HH:mm'));
       this.baseConfig.backtest.daterange = {
-        from: moment(new Date("2022-09-10 22:09")).subtract(randomExt.integer(10, -10), 'minutes').format('YYYY-MM-DD HH:mm'),
+        from: moment(new Date("2022-09-10 22:10")).subtract(randomExt.integer(10, -10), 'minutes').format('YYYY-MM-DD HH:mm'),
         // from: moment(date).subtract(0, 'days').subtract(240, 'minutes').format('YYYY-MM-DD HH:mm'),
         to: moment(date).subtract(122, 'minutes').format('YYYY-MM-DD HH:mm')
       };//, to: date };
@@ -515,23 +515,24 @@ class Ga {
       let position = maxResult[3];
 
       this.notifynewhigh = false;
-      let tempParameters = this.allTimeMaximum.parameters;
-      let tempPrevPrice = tempParameters.prevPrice;
-      tempParameters.prevPrice = null;
-      const outconfig = this.getConfig(tempParameters);
-      tempParameters.prevPrice = tempPrevPrice;
-      const body = await rp.post({
-        url: `${this.apiUrl}/api/backtest`,
-        json: true,
-        body: outconfig,
-        headers: { 'Content-Type': 'application/json', 'Connection': 'keep-alive' },//, timeout: 1000 * 60 * 60 * 10 },//10 hour timeout
-      });
-      if (body & body.performanceReport)
-        if (body.performanceReport.relativeProfit && this.allTimeMaximum.otherMetrics.relativeProfit)
-          this.allTimeMaximum.otherMetrics.relativeProfit = body.performanceReport.relativeProfit;
-      if (this.allTimeMaximum & this.allTimeMaximum.profit)
-        this.allTimeMaximum.profit = body.performanceReport.profit;
-
+      if (this.allTimeMaximum) {
+        let tempParameters = this.allTimeMaximum.parameters;
+        let tempPrevPrice = tempParameters.prevPrice;
+        tempParameters.prevPrice = null;
+        let outconfig = this.getConfig(tempParameters);
+        tempParameters.prevPrice = tempPrevPrice;
+        let body = await rp.post({
+          url: `${this.apiUrl}/api/backtest`,
+          json: true,
+          body: outconfig,
+          headers: { 'Content-Type': 'application/json', 'Connection': 'keep-alive' },//, timeout: 1000 * 60 * 60 * 10 },//10 hour timeout
+        });
+        if (body & body.performanceReport)
+          if (body.performanceReport.relativeProfit && this.allTimeMaximum.otherMetrics.relativeProfit)
+            this.allTimeMaximum.otherMetrics.relativeProfit = body.performanceReport.relativeProfit;
+        if (this.allTimeMaximum & this.allTimeMaximum.profit)
+          this.allTimeMaximum.profit = body.performanceReport.profit;
+      }
       // console.log('score mod', highScoreMod);
       if (this.mainObjective == 'score') {
         if (score > this.allTimeMaximum.score) {
