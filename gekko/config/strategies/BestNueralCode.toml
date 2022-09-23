@@ -1,0 +1,22 @@
+method = 'adadelta'
+threshold_buy = 1.02 #must be above 1
+
+learning_rate = 0.000079
+momentum = 0.01
+decay = 0.001
+stoploss_enabled = true
+stoploss_threshold = 0.992
+price_buffer_len = 100
+min_predictions = 100
+interval = 10
+minPredictionAccuracy = 2
+
+[thresholds]
+low = "19, 36"
+high = "19, 36"
+persistence = 2
+
+[bbands]
+TimePeriod = 20
+NbDevUp = 2
+NbDevDn = 2

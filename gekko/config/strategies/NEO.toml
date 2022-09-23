@@ -1,0 +1,29 @@
+SMA_long = 9
+SMA_short = 5
+
+# BULL
+BULL_RSI = 5
+BULL_RSI_high = 84
+BULL_RSI_low = 62
+
+# IDLE
+IDLE_RSI = 6
+IDLE_RSI_high = 60
+IDLE_RSI_low = 39
+
+# BEAR
+BEAR_RSI = 8
+BEAR_RSI_high = 30
+BEAR_RSI_low = 25
+
+# ROC
+ROC = 6
+ROC_lvl = 0
+
+# BULL/BEAR is defined by the longer SMA trends
+# if SHORT over LONG = BULL
+# if SHORT under LONG = BEAR
+
+# ROC is the LENGHT (averaging)
+# Leave ROC_lvl at 0 otherwise Results are negative
+

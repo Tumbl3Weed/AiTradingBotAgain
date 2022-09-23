@@ -1,0 +1,9 @@
+enabled = true
+
+candleSize = 1
+historySize = 10
+method = "Neo"
+
+[talib]
+enabled = true
+version = "1.0.2"

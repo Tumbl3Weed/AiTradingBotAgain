@@ -1,0 +1,25 @@
+method = 'adadelta'
+threshold_buy = 1.2
+threshold_sell = -0.25
+
+learning_rate = 0.000079
+momentum = 0.01
+decay = 0.001
+stoploss_enabled = true
+stoploss_threshold = 0.975
+hodl_threshold = 0.975
+price_buffer_len = 100
+min_predictions = 1000
+
+[BBRSI]
+interval = 14
+
+[thresholds]
+low = 40
+high = 40
+persistence = 9
+
+[bbands]
+TimePeriod = 20
+NbDevUp = 2
+NbDevDn = 2
