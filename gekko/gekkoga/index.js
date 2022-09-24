@@ -87,11 +87,11 @@ class Ga {
     var filename2 = '';
 
     if (!this.realtimeStrategy) {
-      filename2 = `./results/${this.configName}-${this.currency}_${this.asset}_${this.stratName}.json`;
+      filename2 = `/home/calvin_nel00/AiTradingBotAgain/gekko/gekkoga/results/${this.configName}-${this.currency}_${this.asset}_${this.stratName}.json`;
       console.log('is there a strategy REF!!!!!!!!!!!!!!!!!!!!!!!!!!================1=');
     } else {
       console.log('is there a strategy REF!!!!!!!!!!!!!!!!!!!!!!!!!!================2=');
-      filename2 = `./results/realtime/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`;
+      filename2 = `/home/calvin_nel00/AiTradingBotAgain/gekko/gekkoga/results/realtime/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`;
     }
     const fileName = filename2;
     const exists = fs.existsSync(fileName);
@@ -107,11 +107,11 @@ class Ga {
     var filename2 = '';
 
     if (!this.realtimeStrategy) {
-      filename2 = `./results/${this.configName}-${this.currency}_${this.asset}_${this.stratName}POP.json`;
+      filename2 = `/home/calvin_nel00/AiTradingBotAgain/gekko/gekkoga/results/${this.configName}-${this.currency}_${this.asset}_${this.stratName}POP.json`;
       console.log('is there a strategy REF!!!!!!!!!!!!!!!!!!!!!!!!!!================1=');
     } else {
       console.log('is there a strategy REF!!!!!!!!!!!!!!!!!!!!!!!!!!================2=');
-      filename2 = `./results/realtime/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}POP.json`;
+      filename2 = `/home/calvin_nel00/AiTradingBotAgain/gekko/gekkoga/results/realtime/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}POP.json`;
     }
     const fileName = filename2;
     const exists = fs.existsSync(fileName);
@@ -429,7 +429,7 @@ class Ga {
 
   async updateFromTheStrategyToHere() { //from there to here
     const json = JSON.stringify(this.allTimeMaximum);
-    await fs.writeFile(`./results/realtime/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`, json, 'utf8').catch(err => console.log(err));
+    await fs.writeFile(`/home/calvin_nel00/AiTradingBotAgain/gekko/gekkoga/results/realtime/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`, json, 'utf8').catch(err => console.log(err));
   }
   async run() {
     // Check for old break point
@@ -597,7 +597,7 @@ class Ga {
 
           const json2 = JSON.stringify(container);
 
-          if (fs.existsSync(`./results/realtime/nearFit/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`)) {
+          if (fs.existsSync(`/home/calvin_nel00/AiTradingBotAgain/gekko/gekkoga/results/realtime/nearFit/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`)) {
             let content;
             content = fs.readFileSync(`./results/realtime/nearFit/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`, { encoding: 'utf8' });
             // console.log(content);
@@ -607,7 +607,7 @@ class Ga {
             }
 
           } else {
-            fs.writeFile(`./results/realtime/nearFit/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`, json2 + '\n', 'utf8').catch(err => console.log(err));
+            fs.writeFile(`/home/calvin_nel00/AiTradingBotAgain/gekko/gekkoga/results/realtime/nearFit/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`, json2 + '\n', 'utf8').catch(err => console.log(err));
           }
 
         }
@@ -643,14 +643,14 @@ class Ga {
       const json = JSON.stringify(this.allTimeMaximum);
       const jsonPop = JSON.stringify(population);
       if (!this.realtimeStrategy) {  //if it exists we running live. 
-        await fs.writeFile(`./results/${this.configName}-${this.currency}_${this.asset}_${this.stratName}.json`, json, 'utf8').catch(err => console.log(err));
-        await fs.writeFile(`./results/${this.configName}-${this.currency}_${this.asset}_${this.stratName}POP.json`, jsonPop, 'utf8').catch(err => console.log(err));
+        await fs.writeFile(`/home/calvin_nel00/AiTradingBotAgain/gekko/gekkoga/results/${this.configName}-${this.currency}_${this.asset}_${this.stratName}.json`, json, 'utf8').catch(err => console.log(err));
+        await fs.writeFile(`/home/calvin_nel00/AiTradingBotAgain/gekko/gekkoga/results/${this.configName}-${this.currency}_${this.asset}_${this.stratName}POP.json`, jsonPop, 'utf8').catch(err => console.log(err));
       } else {
 
 
         // console.log(this.realtimeStrategy);
-        await fs.writeFile(`./results/realtime/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`, json, 'utf8').catch(err => console.log(err));
-        await fs.writeFile(`./results/realtime/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}Pop.json`, jsonPop, 'utf8').catch(err => console.log(err));
+        await fs.writeFile(`/home/calvin_nel00/AiTradingBotAgain/gekko/gekkoga/results/realtime/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}.json`, json, 'utf8').catch(err => console.log(err));
+        await fs.writeFile(`/home/calvin_nel00/AiTradingBotAgain/gekko/gekkoga/results/realtime/${this.configName}-${this.currency}_${this.asset}_${this.realtimeStrategy.name}Pop.json`, jsonPop, 'utf8').catch(err => console.log(err));
       }
       if (this.sendemail && this.notifynewhigh) {
         var transporter = nodemailer.createTransport({
